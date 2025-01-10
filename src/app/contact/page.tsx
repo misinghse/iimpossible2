@@ -20,6 +20,12 @@ export default function ContactPage() {
     setLoading(true);
     setServerMessage("");
 
+    if (!/^\d{10}$/.test(mobile)) {
+      setServerMessage("Please enter a valid 10-digit mobile number.");
+      setLoading(false);
+      return;
+    }
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -30,18 +36,27 @@ export default function ContactPage() {
       if (response.ok) {
         const data = await response.json();
         setServerMessage(data.message || "Submission successful!");
-        setShowDownloadLink(true); // Show the download link on success
+        setShowDownloadLink(true);
+        resetForm(); // Reset form fields on success
       } else {
         const data = await response.json();
         setServerMessage(data.error || "Failed to submit. Please try again.");
         setShowDownloadLink(false);
       }
-    } catch (error) {
+    } catch {
       setServerMessage("Network error. Please try again later.");
       setShowDownloadLink(false);
     } finally {
       setLoading(false);
     }
+  }
+
+  function resetForm() {
+    setName("");
+    setMobile("");
+    setEmail("");
+    setQualification("");
+    setAttemptedCAT("No");
   }
 
   return (
@@ -50,7 +65,10 @@ export default function ContactPage() {
       <main className="py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl font-bold mb-6">Contact Us</h1>
-          <p className="text-gray-700 mb-6">Complete the form below to get in touch with us. Once the form is submitted, you'll receive a link to download the syllabus</p>
+          <p className="text-gray-700 mb-6">
+            Complete the form below to get in touch with us. Once the form is submitted, you&apos;ll
+            receive a link to download the syllabus.
+          </p>
 
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
@@ -74,6 +92,8 @@ export default function ContactPage() {
                 required
                 id="mobile"
                 type="text"
+                pattern="\d{10}"
+                title="Enter a valid 10-digit mobile number"
                 className="w-full border rounded px-3 py-2"
                 value={mobile}
                 onChange={(e) => setMobile(e.target.value)}
@@ -106,7 +126,7 @@ export default function ContactPage() {
             </div>
             <div>
               <p className="block mb-1 font-medium">Attempted CAT Before?</p>
-              <label>
+              <label className="mr-4">
                 <input
                   type="radio"
                   name="attemptedCAT"
@@ -132,11 +152,19 @@ export default function ContactPage() {
             </Button>
           </form>
 
-          {serverMessage && (
-            <div className="mt-4 text-sm font-semibold text-green-600">
-              {serverMessage}
-            </div>
-          )}
+          <div aria-live="polite" className="mt-4">
+            {serverMessage && (
+              <div
+                className={`text-sm font-semibold ${
+                  serverMessage.includes("successful")
+                    ? "text-green-600"
+                    : "text-red-600"
+                }`}
+              >
+                {serverMessage}
+              </div>
+            )}
+          </div>
 
           {showDownloadLink && (
             <div className="mt-6">
