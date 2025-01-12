@@ -1,36 +1,39 @@
+import Head from "next/head";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 
 export default function AboutPage() {
   return (
     <>
+      <Head>
+        <title>About Us - IIM Possible</title>
+        <meta
+          name="description"
+          content="Learn about the team behind IIM Possible, offering personalized CAT preparation for aspiring IIM students."
+        />
+      </Head>
       <Navbar />
       <main className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-3xl mx-auto">
             <h1 className="text-4xl font-bold mb-6">About Us</h1>
             <p className="text-gray-700 mb-6">
-              At iimpossible, we believe that every student’s journey to the Indian Institutes of
-              Management (IIMs) or any top management college should be as unique as they are.
+              At iimpossible, we believe that every student&rsquo;s journey to the Indian Institutes
+              of Management (IIMs) or any top management college should be as unique as they are.
               Founded by a team of seasoned professionals, iimpossible combines years of expertise
               with a passion for personalized education.
             </p>
-            <p className="text-gray-700 mb-6">
-              Our founding team includes:
-            </p>
+            <p className="text-gray-700 mb-6">Our founding team includes:</p>
             <ul className="list-disc pl-6 mb-6 text-gray-700">
-              <li>
-                <strong>Sanjiv Kumar</strong>, an alumnus of the prestigious IIM Calcutta with over
-                two decades of industry experience.
-              </li>
-              <li>
-                <strong>Siddhant Shekhar</strong>, an alumnus of XLRI, bringing deep insights into
-                management education.
-              </li>
-              <li>
-                <strong>Shashank Kumar</strong>, an alumnus of IIM Bangalore, with a strong
-                background in strategic coaching and mentoring.
-              </li>
+              {[
+                { name: "Sanjiv Kumar", detail: "IIM Calcutta alumnus" },
+                { name: "Siddhant Shekhar", detail: "XLRI alumnus" },
+                { name: "Shashank Kumar", detail: "IIM Bangalore alumnus" },
+              ].map((person, index) => (
+                <li key={index}>
+                  <strong>{person.name}</strong>, {person.detail}
+                </li>
+              ))}
             </ul>
             <p className="text-gray-700 mb-6">
               Together, we offer a unique approach to CAT preparation that is personalized to fit
@@ -47,7 +50,7 @@ export default function AboutPage() {
               needed to turn your dream of getting into a top management college into reality.
             </p>
             <p className="text-gray-700 font-semibold">
-              Because with us, IIM isn’t just possible—it’s <em>iimpossible</em>.
+              Because with us, IIM isn&rsquo;t just possible—it&rsquo;s <em>iimpossible</em>.
             </p>
           </div>
         </div>

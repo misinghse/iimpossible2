@@ -3,15 +3,17 @@ import Link from "next/link";
 import { Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { DialogTitle } from "@radix-ui/react-dialog";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo on the left corner */}
+        {/* Logo */}
         <Link href="/" className="flex items-center space-x-2">
           <Image
-            src="/logo.jpeg" // Adjust to your logo file path
+            src="/logo.jpeg"
             alt="IIM Possible Logo"
             width={40}
             height={40}
@@ -37,15 +39,13 @@ export function Navbar() {
           </Link>
         </nav>
 
-        {/* Buttons and Mobile Menu */}
+        {/* Mobile Navigation */}
         <div className="flex items-center space-x-4">
           <Link href="/overview">
             <Button variant="default" className="hidden md:inline-flex">
               Get Started
             </Button>
           </Link>
-
-          {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -54,6 +54,10 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
+              {/* Adding DialogTitle for Accessibility */}
+              <DialogTitle>
+                <VisuallyHidden>Navigation Menu</VisuallyHidden>
+              </DialogTitle>
               <nav className="flex flex-col space-y-4">
                 <Link href="/about">
                   <Button variant="ghost" className="w-full text-left">
