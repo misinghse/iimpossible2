@@ -21,10 +21,10 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop and Mobile Nav */}
-        <nav className="flex-1 justify-center hidden md:flex space-x-6">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex flex-1 justify-center space-x-6">
           <Link href="/about" className="text-foreground/60 hover:text-foreground">
-            About
+            About Us
           </Link>
           <Link href="/methodology" className="text-foreground/60 hover:text-foreground">
             Methodology
@@ -37,14 +37,15 @@ export function Navbar() {
           </Link>
         </nav>
 
+        {/* Buttons and Mobile Menu */}
         <div className="flex items-center space-x-4">
-          <Link href="/overview" passHref>
+          <Link href="/overview">
             <Button variant="default" className="hidden md:inline-flex">
               Get Started
             </Button>
           </Link>
 
-          {/* Mobile Nav */}
+          {/* Mobile Navigation */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -54,19 +55,27 @@ export function Navbar() {
             </SheetTrigger>
             <SheetContent side="right">
               <nav className="flex flex-col space-y-4">
-                <Link href="/about" className="text-foreground/60 hover:text-foreground">
-                  About
+                <Link href="/about">
+                  <Button variant="ghost" className="w-full text-left">
+                    About Us
+                  </Button>
                 </Link>
-                <Link href="/methodology" className="text-foreground/60 hover:text-foreground">
-                  Methodology
+                <Link href="/methodology">
+                  <Button variant="ghost" className="w-full text-left">
+                    Methodology
+                  </Button>
                 </Link>
-                <Link href="/features" className="text-foreground/60 hover:text-foreground">
-                  Features
+                <Link href="/features">
+                  <Button variant="ghost" className="w-full text-left">
+                    Features
+                  </Button>
                 </Link>
-                <Link href="/contact" className="text-foreground/60 hover:text-foreground">
-                  Contact Us
+                <Link href="/contact">
+                  <Button variant="ghost" className="w-full text-left">
+                    Contact Us
+                  </Button>
                 </Link>
-                <Link href="/overview" passHref>
+                <Link href="/overview">
                   <Button variant="default" className="w-full">
                     Get Started
                   </Button>
