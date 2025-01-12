@@ -138,54 +138,77 @@ export default function ComprehensiveModulesPage() {
               A student can opt for only the modules that he / she needs help in.
             </p>
             </section>
-      <section className="mb-12">
-        <h2 className="text-3xl font-bold mb-6">
-        Combined Modules &amp; Fees
-        </h2>
-        
-        {/* Wrapper for the combinations */}
-        <div className="flex flex-col space-y-8">
-          {/* Combination 1: VARC + QA = INR 25000/- */}
-          <div className="flex items-center justify-start space-x-4">
-            {/* Circle for VARC */}
-            <div className="w-20 h-20 rounded-full bg-gray-400 flex items-center justify-center border-2 border-white text-white font-bold">
-              VARC
-            </div>
-            {/* Plus sign */}
-            <span className="text-2xl font-semibold text-gray-600">+</span>
-            {/* Circle for QA */}
-            <div className="w-20 h-20 rounded-full bg-amber-700 flex items-center justify-center border-2 border-white text-white font-bold">
-              QA
-            </div>
-            {/* Equals sign */}
-            <span className="text-2xl font-semibold text-gray-600">=</span>
-            {/* Circle for Fee */}
-            <div className="w-28 h-28 rounded-full bg-red-700 flex items-center justify-center border-2 border-white text-white font-bold text-center">
-              INR <br /> 25,000/-
-            </div>
-          </div>
+            <section className="mb-12">
+              <h2 className="text-3xl font-bold mb-6">Combined Modules &amp; Fees</h2>
 
-          {/* Combination 2: VA + DILR = INR 20000 */}
-          <div className="flex items-center justify-start space-x-4">
-            {/* Circle for VA */}
-            <div className="w-20 h-20 rounded-full bg-gray-400 flex items-center justify-center border-2 border-white text-white font-bold">
-              VA
-            </div>
-            {/* Plus sign */}
-            <span className="text-2xl font-semibold text-gray-600">+</span>
-            {/* Circle for DILR */}
-            <div className="w-20 h-20 rounded-full bg-amber-700 flex items-center justify-center border-2 border-white text-white font-bold">
-              DILR
-            </div>
-            {/* Equals sign */}
-            <span className="text-2xl font-semibold text-gray-600">=</span>
-            {/* Circle for Fee */}
-            <div className="w-28 h-28 rounded-full bg-red-700 flex items-center justify-center border-2 border-white text-white font-bold text-center">
-              INR <br /> 20,000
-            </div>
-          </div>
-        </div>
-      </section>
+              {/* Wrapper for the combinations */}
+              <div className="flex flex-col space-y-8">
+                {/* Combination 1: VARC + QA = INR 25000/- */}
+                <div className="flex items-center justify-start space-x-4">
+                  <div className="w-20 h-20 rounded-full bg-green-800 flex items-center justify-center text-white font-bold">
+                    VARC
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">+</span>
+                  <div className="w-20 h-20 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold">
+                    QA
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">=</span>
+                  <div className="w-28 h-28 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-center">
+                    INR <br /> 25,000/-
+                  </div>
+                </div>
+
+                {/* Combination 2: VA + DILR = INR 20000 */}
+                <div className="flex items-center justify-start space-x-4">
+                  <div className="w-20 h-20 rounded-full bg-green-800 flex items-center justify-center text-white font-bold">
+                    VA
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">+</span>
+                  <div className="w-20 h-20 rounded-full bg-lime-600 flex items-center justify-center text-white font-bold">
+                    DILR
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">=</span>
+                  <div className="w-28 h-28 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-center">
+                    INR <br /> 20,000/-
+                  </div>
+                </div>
+
+                {/* Combination 3: QA + DILR = INR 25000/- */}
+                <div className="flex items-center justify-start space-x-4">
+                  <div className="w-20 h-20 rounded-full bg-orange-700 flex items-center justify-center text-white font-bold">
+                    QA
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">+</span>
+                  <div className="w-20 h-20 rounded-full bg-lime-600 flex items-center justify-center text-white font-bold">
+                    DILR
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">=</span>
+                  <div className="w-28 h-28 rounded-full bg-green-800 flex items-center justify-center text-white font-bold text-center">
+                    INR <br /> 25,000/-
+                  </div>
+                </div>
+
+                {/* Combination 4: VARC + QA + DILR = INR 34,560/- */}
+                <div className="flex items-center justify-start space-x-4">
+                  <div className="w-20 h-20 rounded-full bg-green-800 flex items-center justify-center text-white font-bold">
+                    VARC
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">+</span>
+                  <div className="w-20 h-20 rounded-full bg-teal-600 flex items-center justify-center text-white font-bold">
+                    QA
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">+</span>
+                  <div className="w-20 h-20 rounded-full bg-lime-600 flex items-center justify-center text-white font-bold">
+                    DILR
+                  </div>
+                  <span className="text-2xl font-semibold text-gray-600">=</span>
+                  <div className="w-28 h-28 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-center">
+                    INR <br /> 34,560/-
+                  </div>
+                </div>
+              </div>
+            </section>
+
 
           </div>
         </div>

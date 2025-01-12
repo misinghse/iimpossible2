@@ -7,9 +7,9 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 export function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-16 items-center justify-between">
         {/* Logo on the left corner */}
-        <Link href="/" className="mr-6 flex items-center space-x-2">
+        <Link href="/" className="flex items-center space-x-2">
           <Image
             src="/logo.jpeg" // Adjust to your logo file path
             alt="IIM Possible Logo"
@@ -21,8 +21,8 @@ export function Navbar() {
           </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex flex-1 justify-center space-x-6">
+        {/* Desktop and Mobile Nav */}
+        <nav className="flex-1 justify-center hidden md:flex space-x-6">
           <Link href="/about" className="text-foreground/60 hover:text-foreground">
             About
           </Link>
@@ -33,17 +33,18 @@ export function Navbar() {
             Features
           </Link>
           <Link href="/contact" className="text-foreground/60 hover:text-foreground">
-          Contact Us
+            Contact Us
           </Link>
         </nav>
-        <div className="flex items-center space-x-4">
-        <Link href="/overview" passHref>
-          <Button variant="default" className="hidden md:inline-flex">
-         Get Started
-          </Button>
-        </Link>
 
-          {/* Mobile Nav Trigger */}
+        <div className="flex items-center space-x-4">
+          <Link href="/overview" passHref>
+            <Button variant="default" className="hidden md:inline-flex">
+              Get Started
+            </Button>
+          </Link>
+
+          {/* Mobile Nav */}
           <Sheet>
             <SheetTrigger asChild>
               <Button variant="ghost" size="icon" className="md:hidden">
@@ -62,10 +63,14 @@ export function Navbar() {
                 <Link href="/features" className="text-foreground/60 hover:text-foreground">
                   Features
                 </Link>
-                <Link href="/courses" className="text-foreground/60 hover:text-foreground">
-                  Courses
+                <Link href="/contact" className="text-foreground/60 hover:text-foreground">
+                  Contact Us
                 </Link>
-                <Button variant="default">Get Started</Button>
+                <Link href="/overview" passHref>
+                  <Button variant="default" className="w-full">
+                    Get Started
+                  </Button>
+                </Link>
               </nav>
             </SheetContent>
           </Sheet>
