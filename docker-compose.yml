@@ -9,7 +9,7 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-      # - /app/node_modules   # (Remove or comment this out to use container's node_modules)
-    command: npm run dev
+      # - /app/node_modules
+    command: ["sh", "-c", "npm install && npx next dev"]
     env_file:
       - .env
