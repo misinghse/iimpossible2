@@ -1,12 +1,23 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Menu } from "lucide-react";
+import { FaWhatsapp } from "react-icons/fa"; // Using react-icons instead of lucide-react for WhatsApp
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { DialogTitle } from "@radix-ui/react-dialog";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 
+/**
+ * Navbar component renders the header with navigation links,
+ * including a WhatsApp contact link.
+ *
+ * @returns {JSX.Element} The rendered Navbar component.
+ */
 export function Navbar() {
+  // Replace with your actual WhatsApp phone number (in international format)
+  const whatsappNumber = "+91 8709280927";
+  const whatsappLink = "https://wa.me/+918709280927";
+
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
@@ -37,6 +48,16 @@ export function Navbar() {
           <Link href="/contact" className="text-foreground/60 hover:text-foreground">
             Contact Us
           </Link>
+          {/* WhatsApp Contact Link */}
+          <Link
+            href={whatsappLink}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center space-x-1 text-foreground/60 hover:text-foreground"
+          >
+            <FaWhatsapp className="h-5 w-5" />
+            <span>{whatsappNumber}</span>
+          </Link>
         </nav>
 
         {/* Mobile Navigation */}
@@ -54,7 +75,6 @@ export function Navbar() {
               </Button>
             </SheetTrigger>
             <SheetContent side="right">
-              {/* Adding DialogTitle for Accessibility */}
               <DialogTitle>
                 <VisuallyHidden>Navigation Menu</VisuallyHidden>
               </DialogTitle>
@@ -77,6 +97,19 @@ export function Navbar() {
                 <Link href="/contact">
                   <Button variant="ghost" className="w-full text-left">
                     Contact Us
+                  </Button>
+                </Link>
+                {/* WhatsApp Contact Link for Mobile */}
+                <Link
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="ghost" className="w-full text-left">
+                    <div className="flex items-center space-x-1">
+                      <FaWhatsapp className="h-5 w-5" />
+                      <span>{whatsappNumber}</span>
+                    </div>
                   </Button>
                 </Link>
                 <Link href="/overview">

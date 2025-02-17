@@ -15,11 +15,9 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Envision Your Future: What Do You Truly Want?
-              </h1>
+              IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success              </h1>
               <p className="text-lg md:text-xl mb-8">
-                Transform your MBA aspirations into reality with personalized coaching for top IIMs.
-              </p>
+              AI-Powered Personalization: Your Roadmap to CAT Success              </p>
               <Button size="lg" variant="secondary" asChild>
                 <Link href="/overview">
                   Start Your Journey <ArrowRight className="ml-2 h-4 w-4" />
@@ -33,26 +31,22 @@ export default function Home() {
 <section className="flex justify-center items-center h-full py-12 px-4 bg-gray-100">
   <div className="max-w-4xl w-full border-4 border-gray-200 rounded-3xl shadow-2xl bg-white p-8 md:p-12 text-gray-900 text-center">
     <h2 className="text-xl md:text-2xl font-bold mb-4">
-      🎯 Take the IIM-Possible Screening Test and earn your spot in the most exclusive,
+      Take the IIM-Possible Screening Test and earn your spot in the most exclusive,
       result-driven CAT coaching—designed for assured success!
     </h2>
     <ul className="list-none mb-6 text-base space-y-2">
-      <li>✅ Top 100 students will receive personalized mentoring from IIM alumni</li>
-      <li>✅ Modular, self-paced & concept-based learning for 10x efficiency</li>
-      <li>✅ Elite coaching that maximizes your percentile & guarantees top B-school calls</li>
-      <li>✅ Your shortcut to an IIM seat – one-on-one guidance from those who’ve been there!</li>
+      <li>Top 100 students will receive personalized mentoring from IIM alumni</li>
+      <li>Modular, self-paced & concept-based learning for 10x efficiency</li>
+      <li>Elite coaching that maximizes your percentile & guarantees top B-school calls</li>
+      <li>Your shortcut to an IIM seat – one-on-one guidance from those who’ve been there!</li>
     </ul>
-    <p className="mb-4 font-semibold">
-      📅 <strong>Test Date:</strong> 23rd Feb 2025 - One-hour test <br />
-      📝 <strong>Last Date to Register:</strong> 22nd Feb 2025
-    </p>
-    <p className="mb-4 font-semibold">📞 Call / Whatsapp: 8709280927</p>
+    <p className="mb-4 font-semibold">Call / Whatsapp: 8709280927</p>
     <p className="mb-6">
-      💡 This is not just coaching—this is a launchpad to your IIM dream!
+       This is not just coaching—this is a launchpad to your IIM dream!
     </p>
     <Button size="lg" variant="secondary" asChild>
       <Link href="/contact">
-        📍 Register now & take the first step toward your future! <ArrowRight className="ml-2 h-4 w-4" />
+         Register now & take the first step toward your future! <ArrowRight className="ml-2 h-4 w-4" />
       </Link>
     </Button>
   </div>
