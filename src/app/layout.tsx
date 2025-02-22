@@ -14,9 +14,19 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
+  icons: {
+    icon: [
+      {
+        url: "/images/logo.jpeg",
+        href: "/images/logo.jpeg",
+      },
+    ],
+  },
   title: "IIM Possible",
   description: "Personalized Coaching for CAT and Top IIMs",
 };
+
+
 
 export default function RootLayout({
   children,
