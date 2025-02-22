@@ -47,12 +47,13 @@ export default function Home() {
 
   return (
     <>
-      {/* Give the Navbar a higher z-index so the mobile menu is above the hero overlay */}
-      <div className="relative z-50">
+      {/* Fixed Navbar wrapper so that the mobile menu appears full-width */}
+      <div className="w-full fixed top-0 left-0 z-50">
         <Navbar />
       </div>
 
-      <main>
+      {/* Add top padding to main so content doesn't hide behind fixed navbar */}
+      <main className="pt-20">
         {/* Hero Section with background image */}
         <section
           className="relative text-white py-12 md:py-16 bg-center bg-cover"
@@ -62,7 +63,6 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/50 z-0"></div>
 
           <div className="relative container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
-            {/* Updated heading font size */}
             <div className="max-w-5xl w-full text-center md:w-auto whitespace-nowrap">
               <h1 className="text-3xl md:text-4xl font-bold mb-4">
                 IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success
@@ -95,7 +95,9 @@ export default function Home() {
               <p className="text-lg font-semibold mb-4">
                 📞 Call / Whatsapp: <strong>8709280927</strong>
               </p>
-              <p className="italic mb-6">This is not just coaching—this is a launchpad to your IIM dream!</p>
+              <p className="italic mb-6">
+                This is not just coaching—this is a launchpad to your IIM dream!
+              </p>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/register">
                   Register now & take the first step toward your future!
