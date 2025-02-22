@@ -48,19 +48,46 @@ export default function AboutPage() {
           <section className="max-w-5xl mx-auto">
             <h2 className="text-3xl font-bold mb-8 text-center">Meet the Team</h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-              {/* Abhinav */}
-              <div className="flex flex-col">
-                <div className="relative w-40 h-40 mb-4 mx-auto">
+            {/* Founder Section */}
+            <h3 className="text-2xl font-bold mb-6 text-center">Founder & Chief Mentor</h3>
+            <div className="flex flex-col items-center text-center mb-12">
+              <div className="relative w-40 h-40 mb-4">
+                <Image
+                  src="/images/Sanjiv.jpeg"
+                  alt="Sanjiv Kumar"
+                  fill
+                  className="object-cover rounded-full"
+                />
+              </div>
+              <h3 className="text-xl font-semibold mb-2">Sanjiv Kumar</h3>
+              <p className="text-gray-500 mb-4">Founder & Chief Mentor</p>
+              <p className="text-gray-700 leading-relaxed max-w-lg">
+                Sanjiv is a passionate educator who has been taking classes for leading CAT
+                coaching institutes—online and offline—for more than seven years. An MBA from IIM
+                Calcutta, Sanjiv has over two decades of experience across BFSI, working with
+                HDFC, ICICI, and Kotak, as well as handling senior positions in the education
+                sector. He realized the shortcomings of traditional coaching while working with
+                these institutes and conceived the idea of IIM Possible. Outside of work, he is
+                keenly interested in Cricket, Politics, Books, and Movies.
+              </p>
+            </div>
+
+            {/* Co-founders Section */}
+            <h3 className="text-2xl font-bold mb-6 text-center">Co-founders</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {/* Abhinav Jain */}
+              <div className="flex flex-col text-center md:text-left items-center md:items-start">
+                <div className="relative w-40 h-40 mb-4">
                   <Image
                     src="/images/Abhinav.jpeg"
-                    alt="Abhinav"
+                    alt="Abhinav Jain"
                     fill
                     className="object-cover rounded-full"
                   />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-left">Abhinav</h3>
-                <p className="text-gray-700 leading-relaxed text-left">
+                <h3 className="text-xl font-semibold mb-2">Abhinav Jain</h3>
+                <p className="text-gray-500 mb-4">Co-founder</p>
+                <p className="text-gray-700 leading-relaxed">
                   Abhinav is the SVP of Finance at CoinDCX and has previously served as CFO at
                   PharmEasy. With experience at Capsugel Healthcare, Aditya Birla Group, and Binani
                   Group, he has built expertise in business performance management, strategic
@@ -71,18 +98,19 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              {/* Shashank */}
-              <div className="flex flex-col">
-                <div className="relative w-40 h-40 mb-4 mx-auto">
+              {/* Shashank K Srivastava */}
+              <div className="flex flex-col text-center md:text-left items-center md:items-start">
+                <div className="relative w-40 h-40 mb-4">
                   <Image
                     src="/images/Shashank.jpeg"
-                    alt="Shashank"
+                    alt="Shashank K Srivastava"
                     fill
                     className="object-cover rounded-full"
                   />
                 </div>
-                <h3 className="text-xl font-semibold mb-2 text-left">Shashank</h3>
-                <p className="text-gray-700 leading-relaxed text-left">
+                <h3 className="text-xl font-semibold mb-2">Shashank K Srivastava</h3>
+                <p className="text-gray-500 mb-4">Co-founder</p>
+                <p className="text-gray-700 leading-relaxed">
                   Shashank is an experienced trainer and mentor with vast experience in the
                   industry. Notably, he served as Program Director with Wipro Technologies, handling
                   clients like Nestle and GSK, and as Senior Project Manager with LogicaCMG for
@@ -92,28 +120,6 @@ export default function AboutPage() {
                   careers of young people aspiring to join top management institutions. A cricket
                   enthusiast, Shashank has written books on general management and project
                   management.
-                </p>
-              </div>
-
-              {/* Sanjiv */}
-              <div className="flex flex-col">
-                <div className="relative w-40 h-40 mb-4 mx-auto">
-                  <Image
-                    src="/images/Sanjiv.jpeg"
-                    alt="Sanjiv"
-                    fill
-                    className="object-cover rounded-full"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-left">Sanjiv</h3>
-                <p className="text-gray-700 leading-relaxed text-left">
-                  Sanjiv is a passionate educator who has been taking classes for leading CAT
-                  coaching institutes—online and offline—for more than seven years. An MBA from IIM
-                  Calcutta, Sanjiv has over two decades of experience across BFSI, working with
-                  HDFC, ICICI, and Kotak, as well as handling senior positions in the education
-                  sector. He realized the shortcomings of traditional coaching while working with
-                  these institutes and conceived the idea of IIM Possible. Outside of work, he is
-                  keenly interested in Cricket, Politics, Books, and Movies.
                 </p>
               </div>
             </div>
