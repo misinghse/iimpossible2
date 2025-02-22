@@ -1,16 +1,16 @@
 'use client';
 
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Users, GraduationCap, BookOpen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import { Card, CardContent } from "@/components/ui/card";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
-// ✅ Dynamically import react-slick to avoid SSR issues
 const Slider = dynamic(() => import("react-slick"), { ssr: false });
 
 const testimonials = [
@@ -34,6 +34,16 @@ const testimonials = [
   },
 ];
 
+/**
+ * Home page component.
+ *
+ * This component renders the complete landing page including:
+ * - Hero Section (with banner data centered)
+ * - Screening Test Section
+ * - Features Section
+ * - Path to Success Section
+ * - Success Stories Section
+ */
 export default function Home() {
   const sliderSettings = {
     dots: true,
@@ -49,11 +59,10 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        {/* Hero Section with Full-Height Image */}
+        {/* Hero Section with centered banner data */}
         <section className="relative bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white py-12 md:py-16">
-          <div className="container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-between">
-            {/* Text Content */}
-            <div className="max-w-xl text-center md:text-left md:w-1/2">
+          <div className="container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
+            <div className="max-w-xl text-center md:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success
               </h1>
@@ -66,85 +75,110 @@ export default function Home() {
                 </Link>
               </Button>
             </div>
-
-            {/* Full-Height Image */}
-            <div className="md:w-1/2 h-[450px] md:h-[550px] mt-8 md:mt-0 flex justify-center items-center">
-              <Image
-                src="/images/banner1.png" // Ensure the image is placed in public/images/
-                alt="AI-Powered Coaching"
-                width={500}
-                height={500}
-                className="rounded-lg shadow-lg object-cover h-full w-auto"
-                priority
-              />
-            </div>
           </div>
         </section>
 
-        {/* ✅ New Banner Section WITH IMAGE */}
+        {/* Screening Test Section */}
         <section className="py-16 bg-white shadow-lg rounded-xl mx-4 md:mx-auto md:max-w-5xl text-center border border-gray-200">
           <div className="flex flex-col md:flex-row items-center justify-between">
-            {/* Text Content */}
-            <div className="md:w-1/2 p-6">
+            <div className="md:w-1/2 p-6 text-left">
               <h2 className="text-2xl md:text-3xl font-bold mb-6">
                 Take the IIM-Possible Screening Test and earn your spot in the most exclusive, result-driven CAT coaching—designed for assured success!
               </h2>
-              <ul className="text-lg text-gray-700 mb-6 space-y-2 text-left">
-                <li>🎓 Top 100 students will receive personalized mentoring from IIM alumni</li>
-                <li>💡 Modular, self-paced & concept-based learning for 10x efficiency</li>
-                <li>🏆 Elite coaching that maximizes your percentile & guarantees top B-school calls</li>
-                <li>🚀 Your shortcut to an IIM seat – one-on-one guidance from those who’ve been there!</li>
+              <ul className="text-lg text-gray-700 mb-6 space-y-2">
+                <li>Top 100 students will receive personalized mentoring from IIM alumni</li>
+                <li>Modular, self-paced & concept-based learning for 10x efficiency</li>
+                <li>Elite coaching that maximizes your percentile & guarantees top B-school calls</li>
+                <li>Your shortcut to an IIM seat – one-on-one guidance from those who’ve been there!</li>
               </ul>
-              <p className="text-lg font-semibold mb-4">📞 Call / Whatsapp: <span className="font-bold">8709280927</span></p>
+              <p className="text-lg font-semibold mb-4">📞 Call / Whatsapp: <strong>8709280927</strong></p>
               <p className="italic mb-6">This is not just coaching—this is a launchpad to your IIM dream!</p>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/register">
-                  Register now & take the first step toward your future! <ArrowRight className="ml-2 h-4 w-4" />
+                  Register now & take the first step toward your future!
                 </Link>
               </Button>
             </div>
-
-            {/* IMAGE in Second Banner */}
             <div className="md:w-1/2 p-4">
               <Image
-                src="/images/banner1.png" // Use same or a different image here
+                src="/images/banner1.png"
                 alt="Screening Test"
-                width={500}
-                height={500}
+                width={400}
+                height={400}
                 className="rounded-lg shadow-lg object-cover"
               />
             </div>
           </div>
         </section>
 
-        {/* About Section */}
-        <section className="py-14 bg-gray-50">
+        {/* Features Section */}
+        <section className="py-16 bg-gray-50">
           <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-8">Your Path to Success</h2>
-              <div className="prose max-w-none">
-                <p className="text-gray-600 mb-6">
-                  A career is a significant part of our lives—it influences our daily routines, our
-                  personal satisfaction, and our long-term happiness. The decisions you make now can
-                  shape the trajectory of your future.
-                </p>
-                <div className="bg-red-50 p-6 rounded-lg mb-6">
-                  <h3 className="text-xl font-semibold mb-4">Ask yourself:</h3>
-                  <ul className="list-disc pl-6 space-y-2">
-                    <li>Do you want a career that challenges and excites you?</li>
-                    <li>Are you seeking a role that offers both personal fulfillment and substantial rewards?</li>
-                    <li>
-                      Do you aspire to be part of a prestigious institution that opens doors to
-                      remarkable opportunities?
-                    </li>
-                  </ul>
-                </div>
-                <Button className="w-full md:w-auto" asChild>
-                  <Link href="/methodology">
-                    Learn About Our Methodology <ArrowRight className="ml-2 h-4 w-4" />
-                  </Link>
-                </Button>
+            <h2 className="text-3xl font-bold text-center mb-12">Why Choose IIM Possible?</h2>
+            <div className="grid md:grid-cols-3 gap-8">
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <Users className="h-12 w-12 text-red-600 mb-4 mx-auto" />
+                  <h3 className="text-xl font-semibold mb-3">Personalized Coaching</h3>
+                  <p className="text-gray-600">
+                    Individual attention and customized study plans tailored to your needs.
+                  </p>
+                  <Button className="mt-4" asChild>
+                    <Link href="/personalized-coaching">Learn More</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <GraduationCap className="h-12 w-12 text-red-600 mb-4 mx-auto" />
+                  <h3 className="text-xl font-semibold mb-3">Expert Mentors</h3>
+                  <p className="text-gray-600">
+                    Learn from IIM and XLRI alumni with years of experience.
+                  </p>
+                  <Button className="mt-4" asChild>
+                    <Link href="/expert-mentors">Learn More</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              <Card>
+                <CardContent className="p-6 text-center">
+                  <BookOpen className="h-12 w-12 text-red-600 mb-4 mx-auto" />
+                  <h3 className="text-xl font-semibold mb-3">Comprehensive Modules</h3>
+                  <p className="text-gray-600">
+                    Structured learning path covering all CAT exam sections.
+                  </p>
+                  <Button className="mt-4" asChild>
+                    <Link href="/comprehensive-modules">Learn More</Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        {/* Path to Success Section */}
+        <section className="py-14 bg-gray-100">
+          <div className="container mx-auto px-4 text-center">
+            <h2 className="text-3xl font-bold mb-8">Your Path to Success</h2>
+            <div className="prose max-w-none">
+              <p className="text-gray-600 mb-6">
+                A career is a significant part of our lives—it influences our daily routines, our personal satisfaction, and our long-term happiness. The decisions you make now can shape the trajectory of your future.
+              </p>
+              <div className="bg-red-50 p-6 rounded-lg mb-6 max-w-2xl mx-auto">
+                <h3 className="text-xl font-semibold mb-4 text-center">Ask yourself:</h3>
+                <ul className="list-none pl-0 space-y-2 text-left">
+                  <li>Do you want a career that challenges and excites you?</li>
+                  <li>Are you seeking a role that offers both personal fulfillment and substantial rewards?</li>
+                  <li>Do you aspire to be part of a prestigious institution that opens doors to remarkable opportunities?</li>
+                </ul>
               </div>
+              <Button className="w-full md:w-auto" asChild>
+                <Link href="/methodology">
+                  Learn About Our Methodology <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
           </div>
         </section>

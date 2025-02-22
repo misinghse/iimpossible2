@@ -1,5 +1,6 @@
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import Image from "next/image";
 
 /**
  * Reusable arrow-down SVG component for the module diagrams
@@ -29,7 +30,20 @@ export default function ComprehensiveModulesPage() {
       <main className="py-16">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
+            {/* PAGE TITLE */}
             <h1 className="text-4xl font-bold mb-8">Comprehensive Modules</h1>
+            
+            {/* NEW PUZZLE IMAGE SECTION */}
+            <div className="flex justify-center mb-12">
+              <Image
+                src="/images/comprehensiveModules.jpeg"
+                alt="Puzzle piece representing comprehensive modules"
+                width={600}
+                height={400}
+                className="rounded-md shadow-md w-full max-w-xl h-auto"
+                priority
+              />
+            </div>
 
             {/* SECTION 1: Overview */}
             <section className="mb-12 px-4">
