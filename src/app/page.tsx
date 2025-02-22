@@ -68,8 +68,9 @@ export default function Home() {
           <div className="absolute inset-0 bg-black/50"></div>
 
           <div className="relative container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
-            <div className="max-w-xl text-center md:w-1/2">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            {/* Updated heading font size */}
+            <div className="max-w-5xl w-full text-center md:w-auto whitespace-nowrap">
+              <h1 className="text-3xl md:text-4xl font-bold mb-4">
                 IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success
               </h1>
               <p className="text-lg md:text-xl mb-6">
@@ -83,7 +84,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* Screening Test Section */}
         <section className="py-16 bg-white shadow-lg rounded-xl mx-4 md:mx-auto md:max-w-5xl text-center border border-gray-200">
           <div className="flex flex-col md:flex-row items-center justify-between">
