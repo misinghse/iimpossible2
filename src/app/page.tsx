@@ -34,16 +34,6 @@ const testimonials = [
   },
 ];
 
-/**
- * Home page component.
- *
- * This component renders the complete landing page including:
- * - Hero Section (now with banner1.png as the background image)
- * - Screening Test Section
- * - Features Section
- * - Path to Success Section
- * - Success Stories Section
- */
 export default function Home() {
   const sliderSettings = {
     dots: true,
@@ -57,7 +47,11 @@ export default function Home() {
 
   return (
     <>
-      <Navbar />
+      {/* Give the Navbar a higher z-index so the mobile menu is above the hero overlay */}
+      <div className="relative z-50">
+        <Navbar />
+      </div>
+
       <main>
         {/* Hero Section with background image */}
         <section
@@ -65,7 +59,7 @@ export default function Home() {
           style={{ backgroundImage: "url('/images/banner1.png')" }}
         >
           {/* Overlay to darken the background image for better text visibility */}
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-black/50 z-0"></div>
 
           <div className="relative container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
             {/* Updated heading font size */}
@@ -84,6 +78,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+
         {/* Screening Test Section */}
         <section className="py-16 bg-white shadow-lg rounded-xl mx-4 md:mx-auto md:max-w-5xl text-center border border-gray-200">
           <div className="flex flex-col md:flex-row items-center justify-between">
@@ -97,7 +92,9 @@ export default function Home() {
                 <li>Elite coaching that maximizes your percentile & guarantees top B-school calls</li>
                 <li>Your shortcut to an IIM seat – one-on-one guidance from those who’ve been there!</li>
               </ul>
-              <p className="text-lg font-semibold mb-4">📞 Call / Whatsapp: <strong>8709280927</strong></p>
+              <p className="text-lg font-semibold mb-4">
+                📞 Call / Whatsapp: <strong>8709280927</strong>
+              </p>
               <p className="italic mb-6">This is not just coaching—this is a launchpad to your IIM dream!</p>
               <Button size="lg" variant="outline" asChild>
                 <Link href="/register">
