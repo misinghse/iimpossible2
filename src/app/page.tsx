@@ -38,7 +38,7 @@ const testimonials = [
  * Home page component.
  *
  * This component renders the complete landing page including:
- * - Hero Section (with banner data centered)
+ * - Hero Section (now with banner1.png as the background image)
  * - Screening Test Section
  * - Features Section
  * - Path to Success Section
@@ -59,9 +59,15 @@ export default function Home() {
     <>
       <Navbar />
       <main>
-        {/* Hero Section with centered banner data */}
-        <section className="relative bg-gradient-to-r from-red-500 via-red-600 to-red-700 text-white py-12 md:py-16">
-          <div className="container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
+        {/* Hero Section with background image */}
+        <section
+          className="relative text-white py-12 md:py-16 bg-center bg-cover"
+          style={{ backgroundImage: "url('/images/banner1.png')" }}
+        >
+          {/* Overlay to darken the background image for better text visibility */}
+          <div className="absolute inset-0 bg-black/50"></div>
+
+          <div className="relative container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
             <div className="max-w-xl text-center md:w-1/2">
               <h1 className="text-4xl md:text-5xl font-bold mb-4">
                 IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success
