@@ -4,9 +4,9 @@ import nodemailer from "nodemailer";
 export async function POST(req: NextRequest) {
   try {
     // Parse the request body
-    const { name, mobile, email, qualification, attemptedCAT } = await req.json();
+    const { name, mobile, email, qualification, attemptedCAT, preferredDate, preferredTime } = await req.json();
 
-    // Validate required fields
+    // ✅ Validate required fields
     if (!name || !mobile || !email) {
       return NextResponse.json(
         { error: "Missing required fields: Name, Mobile, or Email." },
@@ -14,7 +14,22 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // Validate environment variables
+    // ✅ Validate Preferred Date and Time
+    if (preferredDate && !/^\d{4}-\d{2}-\d{2}$/.test(preferredDate)) {
+      return NextResponse.json(
+        { error: "Invalid Preferred Date format. Use YYYY-MM-DD." },
+        { status: 400 }
+      );
+    }
+
+    if (preferredTime && !/^\d{2}:\d{2}$/.test(preferredTime)) {
+      return NextResponse.json(
+        { error: "Invalid Preferred Time format. Use HH:MM (24-hour format)." },
+        { status: 400 }
+      );
+    }
+
+    // ✅ Validate environment variables
     const { EMAIL_HOST, EMAIL_PORT, EMAIL_USER, EMAIL_PASS, ADMIN_EMAIL } = process.env;
 
     if (!EMAIL_HOST || !EMAIL_PORT || !EMAIL_USER || !EMAIL_PASS || !ADMIN_EMAIL) {
@@ -22,7 +37,7 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "Server configuration error." }, { status: 500 });
     }
 
-    // Configure Nodemailer transport
+    // ✅ Configure Nodemailer transport
     const transporter = nodemailer.createTransport({
       host: EMAIL_HOST,
       port: Number(EMAIL_PORT),
@@ -33,21 +48,28 @@ export async function POST(req: NextRequest) {
       },
     });
 
-    // Send the email
+    // ✅ Construct Email Content Including All Fields
+    const emailContent = `
+      📋 New Contact Form Submission
+
+      👤 Name: ${name}
+      📱 Mobile: ${mobile}
+      📧 Email: ${email}
+      🎓 Highest Qualification: ${qualification || "Not provided"}
+      ❓ Attempted CAT?: ${attemptedCAT || "Not specified"}
+      📅 Preferred Date: ${preferredDate || "Not provided"}
+      ⏰ Preferred Time: ${preferredTime || "Not provided"}
+    `;
+
+    // ✅ Send the email
     await transporter.sendMail({
-      from: `"Contact Form" <${EMAIL_USER}>`,
+      from: `"IIM Possible Contact Form" <${EMAIL_USER}>`,
       to: ADMIN_EMAIL,
       subject: "New Contact Form Submission",
-      text: `
-        Name: ${name}
-        Mobile: ${mobile}
-        Email: ${email}
-        Highest Qualification: ${qualification || "Not provided"}
-        Attempted CAT?: ${attemptedCAT || "Not specified"}
-      `,
+      text: emailContent,
     });
 
-    // Respond with success
+    // ✅ Success Response
     return NextResponse.json(
       { message: "Your query has been submitted successfully!" },
       { status: 200 }

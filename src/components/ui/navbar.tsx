@@ -62,7 +62,7 @@ export function Navbar() {
 
         {/* Mobile Navigation */}
         <div className="flex items-center space-x-4">
-          <Link href="/overview">
+          <Link href="/contact">
             <Button variant="default" className="hidden md:inline-flex">
               Get Started
             </Button>
@@ -112,7 +112,7 @@ export function Navbar() {
                     </div>
                   </Button>
                 </Link>
-                <Link href="/overview">
+                <Link href="/contact">
                   <Button variant="default" className="w-full">
                     Get Started
                   </Button>

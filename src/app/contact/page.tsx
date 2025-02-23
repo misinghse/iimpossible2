@@ -11,6 +11,8 @@ export default function ContactPage() {
   const [email, setEmail] = useState("");
   const [qualification, setQualification] = useState("");
   const [attemptedCAT, setAttemptedCAT] = useState<"Yes" | "No">("No");
+  const [preferredDate, setPreferredDate] = useState("");
+  const [preferredTime, setPreferredTime] = useState("");
   const [serverMessage, setServerMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [showDownloadLink, setShowDownloadLink] = useState(false);
@@ -30,14 +32,22 @@ export default function ContactPage() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, mobile, email, qualification, attemptedCAT }),
+        body: JSON.stringify({
+          name,
+          mobile,
+          email,
+          qualification,
+          attemptedCAT,
+          preferredDate,
+          preferredTime,
+        }),
       });
 
       if (response.ok) {
         const data = await response.json();
         setServerMessage(data.message || "Submission successful!");
         setShowDownloadLink(true);
-        resetForm(); // Reset form fields on success
+        resetForm();
       } else {
         const data = await response.json();
         setServerMessage(data.error || "Failed to submit. Please try again.");
@@ -57,6 +67,8 @@ export default function ContactPage() {
     setEmail("");
     setQualification("");
     setAttemptedCAT("No");
+    setPreferredDate("");
+    setPreferredTime("");
   }
 
   return (
@@ -147,6 +159,33 @@ export default function ContactPage() {
                 No
               </label>
             </div>
+
+            {/* New Date and Time Selection */}
+            <div>
+              <label className="block mb-1 font-medium" htmlFor="preferredDate">
+                Preferred Date to be Contacted
+              </label>
+              <input
+                id="preferredDate"
+                type="date"
+                className="w-full border rounded px-3 py-2"
+                value={preferredDate}
+                onChange={(e) => setPreferredDate(e.target.value)}
+              />
+            </div>
+            <div>
+              <label className="block mb-1 font-medium" htmlFor="preferredTime">
+                Preferred Time to be Contacted
+              </label>
+              <input
+                id="preferredTime"
+                type="time"
+                className="w-full border rounded px-3 py-2"
+                value={preferredTime}
+                onChange={(e) => setPreferredTime(e.target.value)}
+              />
+            </div>
+
             <Button type="submit" disabled={loading}>
               {loading ? "Submitting..." : "Submit"}
             </Button>
