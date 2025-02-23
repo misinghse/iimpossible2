@@ -55,29 +55,22 @@ export default function Home() {
       {/* Add top padding to main so content doesn't hide behind fixed navbar */}
       <main className="pt-20">
         {/* Hero Section with background image */}
-        <section
-          className="relative text-white py-12 md:py-16 bg-center bg-cover"
-          style={{ backgroundImage: "url('/images/banner1.png')" }}
-        >
-          {/* Overlay to darken the background image for better text visibility */}
-          <div className="absolute inset-0 bg-black/50 z-0"></div>
-
-          <div className="relative container mx-auto h-full px-4 flex flex-col md:flex-row items-center justify-center">
-            <div className="max-w-5xl w-full text-center md:w-auto whitespace-nowrap">
-              <h1 className="text-3xl md:text-4xl font-bold mb-4">
-                IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success
-              </h1>
-              <p className="text-lg md:text-xl mb-6">
-                AI-Powered Personalization: Your Roadmap to CAT Success
-              </p>
-              <Button size="lg" variant="secondary" asChild>
-                <Link href="/overview">
-                  Start Your Journey <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        {/* Hero Section with background color */}
+<section className="relative bg-red-600 text-white py-12 md:py-16">
+  <div className="relative container mx-auto h-full px-4 flex flex-col items-center justify-center text-center">
+    <h1 className="text-3xl md:text-4xl font-bold mb-4">
+      IIM Possible: AI-Powered, Personalized CAT Coaching for Your Success
+    </h1>
+    <p className="text-lg md:text-xl mb-6">
+      AI-Powered Personalization: Your Roadmap to CAT Success
+    </p>
+    <Button size="lg" variant="secondary" asChild>
+      <Link href="/overview">
+        Start Your Journey <ArrowRight className="ml-2 h-4 w-4" />
+      </Link>
+    </Button>
+  </div>
+</section>
 
         {/* Screening Test Section */}
         <section className="py-16 bg-white shadow-lg rounded-xl mx-4 md:mx-auto md:max-w-5xl text-center border border-gray-200">
