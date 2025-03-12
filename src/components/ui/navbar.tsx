@@ -58,6 +58,10 @@ export function Navbar() {
             <FaWhatsapp className="h-5 w-5" />
             <span>{whatsappNumber}</span>
           </Link>
+
+          <Link href="/why-iimpossible" className="text-foreground/60 hover:text-foreground">
+        Why IIM Possible
+        </Link>
         </nav>
 
         {/* Mobile Navigation */}
@@ -117,6 +121,11 @@ export function Navbar() {
                     Get Started
                   </Button>
                 </Link>
+                <Link href="/why-iimpossible">
+               <Button variant="ghost" className="w-full text-left">
+               Why IIM Possible
+             </Button>
+             </Link>
               </nav>
             </SheetContent>
           </Sheet>
