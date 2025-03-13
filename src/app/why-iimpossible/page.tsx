@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
+import { ContactForm } from "@/components/ui/ContactForm";
 
 const teamMembers = [
   {
@@ -99,29 +100,54 @@ const WhyIIMPossiblePage = () => {
     <>
       <Navbar />
       <div className="px-4 md:px-20 py-10 space-y-14">
-        {/* Banner Section */}
-        <section className="w-full relative text-center overflow-hidden">
-  <div className="relative w-full overflow-hidden">
-    <Image
-      src="/images/IIM_Possible_Web_Banner.jpg"
-      alt="IIM Possible Banner"
-      width={1200}
-      height={400}
-      className="desktop-banner w-full h-auto object-cover rounded-xl shadow-md"
-      priority
-    />
+ {/* Banner Section */}
+<section className="w-full relative text-center overflow-hidden">
+{/* Desktop Banner + Contact Form Side by Side */}
+<div className="hidden md:flex gap-6 px-6 items-start">
+  {/* Left - Banner */}
+  <div className="w-1/2">
+    <div className="w-full h-full rounded-xl overflow-hidden shadow-md">
+      <Image
+        src="/images/IIM_Possible_Web_Banner.jpg"
+        alt="IIM Possible Banner"
+        width={800}
+        height={600}
+        className="w-full h-full object-cover"
+        priority
+      />
+    </div>
   </div>
-  <div className="relative w-full md:hidden overflow-hidden">
-    <Image
-      src="/images/IIM_Possible_Mobile_Banner.jpg"
-      alt="IIM Possible Banner"
-      width={500}
-      height={300}
-      className="mobile-banner w-full h-auto object-cover rounded-xl shadow-md"
-      priority
-    />
+
+  {/* Right - Contact Form (Plain, No Box) */}
+  <div className="w-1/2 flex flex-col justify-start">
+    <div className="w-full">
+      <ContactForm />
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  {/* Mobile Banner + Contact Form Stacked */}
+  <div className="md:hidden flex flex-col gap-4 items-center px-4">
+    <div className="w-full">
+      <Image
+        src="/images/IIM_Possible_Mobile_Banner.jpg"
+        alt="IIM Possible Banner"
+        width={500}
+        height={300}
+        className="w-full h-auto object-cover rounded-xl shadow-md"
+        priority
+      />
+    </div>
+    <div className="w-full">
+      <ContactForm />
+    </div>
   </div>
 </section>
+
 
         {/* About Section */}
         <section className="text-center max-w-3xl mx-auto">
@@ -152,7 +178,7 @@ const WhyIIMPossiblePage = () => {
           </div>
 
           {/* Mobile Slider */}
-          <div className="md:hidden mt-4">
+          {/* <div className="md:hidden mt-4">
             <AnimatePresence mode="wait">
               <motion.div
                 key={currentFeatureIndex}
@@ -177,7 +203,7 @@ const WhyIIMPossiblePage = () => {
                 </ul>
               </motion.div>
             </AnimatePresence>
-          </div>
+          </div> */}
         </section>
 
         {/* Success Stories */}
@@ -197,17 +223,24 @@ const WhyIIMPossiblePage = () => {
 
         {/* Process Section */}
         <section className="text-center">
-          <h2 className="section-title">Our Process</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            {steps.map((step, index) => (
-              <div key={index} className={`process-block ${index === highlightedStep ? "active" : ""}`}>
-                <div className="step-circle">{index + 1}</div>
-                <h3 className="text-lg font-bold mb-1">Step {index + 1}</h3>
-                <p>{step}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+  <h2 className="section-title">Our Process</h2>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 text-center">
+    {steps.map((step, index) => (
+      <div
+        key={index}
+        className={`flex flex-col items-center justify-center px-4 ${index === highlightedStep ? "font-semibold text-black" : "text-gray-600"}`}
+      >
+        <h3 className="text-lg font-semibold mb-1">Step</h3>
+        <div
+          className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 ${index === highlightedStep ? "bg-red-600 text-white" : "bg-red-300 text-red-900"}`}
+        >
+          {index + 1}
+        </div>
+        <p className={`text-sm ${index === highlightedStep ? "text-black" : "text-gray-600"}`}>{step}</p>
+      </div>
+    ))}
+  </div>
+</section>
 
         {/* Team Section */}
         <section className="text-center">
