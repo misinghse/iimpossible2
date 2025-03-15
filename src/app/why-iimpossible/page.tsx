@@ -99,32 +99,32 @@ const WhyIIMPossiblePage = () => {
   return (
     <>
       <Navbar />
-      <div className="px-4 md:px-20 py-10 space-y-14">
+      
  {/* Banner Section */}
 <section className="w-full relative text-center overflow-hidden">
 {/* Desktop Banner + Contact Form Side by Side */}
-<div className="hidden md:flex gap-6 px-6 items-start">
-  {/* Left - Banner */}
-  <div className="w-1/2">
-    <div className="w-full h-full rounded-xl overflow-hidden shadow-md">
-      <Image
-        src="/images/IIM_Possible_Web_Banner.jpg"
-        alt="IIM Possible Banner"
-        width={800}
-        height={600}
-        className="w-full h-full object-cover"
-        priority
-      />
-    </div>
+<div className="relative w-full h-[870px] overflow-hidden shadow-md md:block hidden">
+  {/* Background Image */}
+  <div className="absolute inset-0 -z-10 w-full h-full">
+    <Image
+      src="/images/IIM_Possible_Web_Banner.jpg"
+      alt="IIM Possible Banner"
+      layout="fill"
+      objectFit="cover"
+      priority
+    />
   </div>
 
-  {/* Right - Contact Form (Plain, No Box) */}
-  <div className="w-1/2 flex flex-col justify-start">
-    <div className="w-full">
+  {/* Content Container */}
+  <div className="flex gap-6 px-6 items-start justify-start w-full h-full">
+    {/* Contact Form */}
+    <div className="w-1/3 flex flex-col justify-start p-8 mt-80 pt-12">
       <ContactForm />
     </div>
   </div>
 </div>
+
+
 
 
 
@@ -147,6 +147,10 @@ const WhyIIMPossiblePage = () => {
     </div>
   </div>
 </section>
+<div className="px-4 py-16 md: space-y-14">
+<h1 className="text-center text-3xl font-bold uppercase bg-[#dc2626] text-white py-2 px-4 rounded-md">
+  Admission Open - 1st Batch Starts 15th April Onwards
+</h1>
 
 
         {/* About Section */}
@@ -161,60 +165,64 @@ const WhyIIMPossiblePage = () => {
         </section>
 
         {/* Why Us Section */}
-        <section className="text-center">
-          <h2 className="section-title">Why Us?</h2>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
-            {features.map((feature, idx) => (
-              <motion.div key={idx} whileHover={{ scale: 1.05 }} className="feature-card">
-                <Image src={feature.image} alt={feature.title} width={300} height={200} className="mx-auto rounded-lg" />
-                <h3 className="feature-title">{feature.title}</h3>
-                <ul className="feature-description">
-                  {feature.description.map((item, i) => (
-                    <li key={i}>{item}</li>
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
-          </div>
+        {/* Why Us Section */}
+<section className="text-center">
+  <h2 className="section-title">Benefits</h2>
+  
+  {/* Desktop View - Grid Layout */}
+  <div className="hidden md:grid grid-cols-1 md:grid-cols-4 gap-6">
+    {features.map((feature, idx) => (
+      <motion.div key={idx} whileHover={{ scale: 1.05 }} className="feature-card">
+        <Image src={feature.image} alt={feature.title} width={300} height={200} className="mx-auto rounded-lg" />
+        <h3 className="feature-title">{feature.title}</h3>
+        <ul className="feature-description">
+          {feature.description.map((item, i) => (
+            <li key={i}>{item}</li>
+          ))}
+        </ul>
+      </motion.div>
+    ))}
+  </div>
 
-          {/* Mobile Slider */}
-          {/* <div className="md:hidden mt-4">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentFeatureIndex}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.4 }}
-                className="feature-card"
-              >
-                <Image
-                  src={features[currentFeatureIndex].image}
-                  alt="feature"
-                  width={400}
-                  height={300}
-                  className="mx-auto rounded"
-                />
-                <h3 className="feature-title">{features[currentFeatureIndex].title}</h3>
-                <ul className="feature-description">
-                  {features[currentFeatureIndex].description.map((point, i) => (
-                    <li key={i}>{point}</li>
-                  ))}
-                </ul>
-              </motion.div>
-            </AnimatePresence>
-          </div> */}
-        </section>
+  {/* Mobile View - Slider */}
+  <div className="md:hidden mt-4">
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={currentFeatureIndex}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        exit={{ opacity: 0, x: -100 }}
+        transition={{ duration: 0.4 }}
+        className="feature-card"
+      >
+        <Image
+          src={features[currentFeatureIndex].image}
+          alt="feature"
+          width={400}
+          height={300}
+          className="mx-auto rounded"
+        />
+        <h3 className="feature-title">{features[currentFeatureIndex].title}</h3>
+        <ul className="feature-description">
+          {features[currentFeatureIndex].description.map((point, i) => (
+            <li key={i}>{point}</li>
+          ))}
+        </ul>
+      </motion.div>
+    </AnimatePresence>
+  </div>
+</section>
+
 
         {/* Success Stories */}
         <section className="text-center">
           <h2 className="section-title">Success Stories</h2>
           <div className="flex flex-col md:flex-row justify-center gap-8">
-            <div className="bg-red-100 p-6 rounded-lg shadow-md">
+            <div className=" p-6 rounded-lg shadow-md">
               <h3 className="success-highlight">75%</h3>
               <p className="mt-2">of students scored 99+ percentile</p>
             </div>
-            <div className="bg-red-100 p-6 rounded-lg shadow-md">
+            <div className=" p-6 rounded-lg shadow-md">
               <h3 className="success-highlight">45%</h3>
               <p className="mt-2">are now in top 5 B-schools of India</p>
             </div>
@@ -223,24 +231,25 @@ const WhyIIMPossiblePage = () => {
 
         {/* Process Section */}
         <section className="text-center">
-  <h2 className="section-title">Our Process</h2>
+  <h2 className="section-title">Our Offerings</h2>
   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 text-center">
     {steps.map((step, index) => (
       <div
         key={index}
-        className={`flex flex-col items-center justify-center px-4 ${index === highlightedStep ? "font-semibold text-black" : "text-gray-600"}`}
+        className="flex flex-col items-center justify-center px-4 text-gray-600"
       >
         <h3 className="text-lg font-semibold mb-1">Step</h3>
         <div
-          className={`w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 ${index === highlightedStep ? "bg-red-600 text-white" : "bg-red-300 text-red-900"}`}
+          className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 bg-red-300 text-red-900"
         >
           {index + 1}
         </div>
-        <p className={`text-sm ${index === highlightedStep ? "text-black" : "text-gray-600"}`}>{step}</p>
+        <p className="text-sm text-gray-600">{step}</p>
       </div>
     ))}
   </div>
 </section>
+
 
         {/* Team Section */}
         <section className="text-center">
