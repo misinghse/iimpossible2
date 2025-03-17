@@ -226,37 +226,44 @@ const WhyIIMPossiblePage = () => {
             </AnimatePresence>
           </div>
         </section>
+        <div className="mt-10 md:mt-16"></div>
 
         {/* Success Stories */}
-        <section className="text-center">
-          <h2 className="section-title">Success Stories</h2>
-          <div className="flex flex-col md:flex-row justify-center gap-8">
-            <div className="p-6 rounded-lg shadow-md">
-              <h3 className="success-highlight">75%</h3>
-              <p className="mt-2">of students scored 99+ percentile</p>
+        <section className="text-center mt-10 md:mt-16">
+            <h2 className="section-title mb-6">Success Stories</h2>
+            <div className="flex flex-col md:flex-row justify-center gap-8">
+                <div className="p-6 rounded-lg shadow-md mb-4 md:mb-0">
+                <h3 className="success-highlight text-4xl md:text-5xl text-red-600 font-bold">75%</h3>
+                <p className="mt-2 text-base">of students scored 99+ percentile</p>
+                </div>
+                <div className="p-6 rounded-lg shadow-md">
+                <h3 className="success-highlight text-4xl md:text-5xl text-red-600 font-bold">45%</h3>
+                <p className="mt-2 text-base">are now in top 5 B-schools of India</p>
+                </div>
             </div>
-            <div className="p-6 rounded-lg shadow-md">
-              <h3 className="success-highlight">45%</h3>
-              <p className="mt-2">are now in top 5 B-schools of India</p>
-            </div>
-          </div>
         </section>
 
+        <div className="mt-10 md:mt-16"></div>
+
         {/* Offerings Section */}
-        <section className="text-center">
-          <h2 className="section-title">Our Offerings</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 text-center">
-            {steps.map((step, index) => (
-              <div key={index} className="flex flex-col items-center justify-center px-4 text-gray-600">
-                <h3 className="text-lg font-semibold mb-1">Step</h3>
-                <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 bg-red-300 text-red-900">
-                  {index + 1}
+            <section className="text-center mt-12 md:mt-16">
+                <h2 className="section-title mb-6">Our Offerings</h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-8 text-center">
+                    {steps.map((step, index) => (
+                    <div
+                        key={index}
+                        className="flex flex-col items-center justify-center px-4 text-gray-600"
+                    >
+                        <h3 className="text-lg font-semibold mb-1">Step</h3>
+                        <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 bg-red-300 text-red-900">
+                        {index + 1}
+                        </div>
+                        <p className="text-sm text-gray-600 text-center">{step}</p>
+                    </div>
+                    ))}
                 </div>
-                <p className="text-sm text-gray-600">{step}</p>
-              </div>
-            ))}
-          </div>
-        </section>
+         </section>
+
 
         {/* Team Section */}
         <section className="text-center">
