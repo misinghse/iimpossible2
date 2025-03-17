@@ -165,6 +165,7 @@ const WhyIIMPossiblePage = () => {
           </div>
         </div>
       </section>
+      <div className="mt-10 md:mt-16"></div>
 
       {/* Main Content */}
       <div className="px-4 py-16 md:space-y-14">
@@ -182,6 +183,7 @@ const WhyIIMPossiblePage = () => {
             From a unique screening test to self-paced learning and mentorship from IIM alumni, every student gets tailored support for maximum success.
           </p>
         </section>
+        <div className="mt-10 md:mt-16"></div>
 
         {/* Benefits Section */}
         <section className="text-center">
@@ -264,6 +266,7 @@ const WhyIIMPossiblePage = () => {
                 </div>
          </section>
 
+         <div className="mt-10 md:mt-16"></div>
 
         {/* Team Section */}
         <section className="text-center">
