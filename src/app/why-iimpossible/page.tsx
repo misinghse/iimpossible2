@@ -1,11 +1,13 @@
-// pages/why-iimpossible.tsx
 "use client";
 import React, { useEffect, useState } from "react";
+import Head from "next/head";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import { ContactForm } from "@/components/ui/ContactForm";
+
+const GTM_ID = "GTM-N2MDVDL3";
 
 const teamMembers = [
   {
@@ -17,7 +19,7 @@ const teamMembers = [
   },
   {
     name: "Shashank K Srivastava",
-    title: "Co-founder",
+    title: "Strategic Partner",
     image: "/images/shashank.jpg",
     description:
       "Shashank, with an MBA from IIM Bangalore, has led roles at Wipro Technologies and LogicCMG. A former professor at Sharda University, he combines industry insights with academic knowledge to offer strategic guidance.",
@@ -98,60 +100,77 @@ const WhyIIMPossiblePage = () => {
 
   return (
     <>
+      {/* Google Tag Manager Script in Head */}
+      <Head>
+        <title>Why IIM Possible</title>
+        <meta name="description" content="Why IIM Possible - Personalized CAT Coaching Program by IIM Alumni" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+              new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+              j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+              'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+              })(window,document,'script','dataLayer','${GTM_ID}');
+            `,
+          }}
+        />
+      </Head>
+
+      {/* Google Tag Manager noscript */}
+      <noscript>
+        <iframe
+          src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+          height="0"
+          width="0"
+          style={{ display: "none", visibility: "hidden" }}
+        ></iframe>
+      </noscript>
+
+      {/* Navbar */}
       <Navbar />
-      
- {/* Banner Section */}
-<section className="w-full relative text-center overflow-hidden">
-{/* Desktop Banner + Contact Form Side by Side */}
-<div className="relative w-full h-[870px] overflow-hidden shadow-md md:block hidden">
-  {/* Background Image */}
-  <div className="absolute inset-0 -z-10 w-full h-full">
-    <Image
-      src="/images/IIM_Possible_Web_Banner.jpg"
-      alt="IIM Possible Banner"
-      layout="fill"
-      objectFit="cover"
-      priority
-    />
-  </div>
 
-  {/* Content Container */}
-  <div className="flex gap-6 px-6 items-start justify-start w-full h-full">
-    {/* Contact Form */}
-    <div className="w-1/3 flex flex-col justify-start p-8 mt-80 pt-12">
-      <ContactForm />
-    </div>
-  </div>
-</div>
+      {/* Banner Section */}
+      <section className="w-full relative text-center overflow-hidden">
+        <div className="relative w-full h-[870px] overflow-hidden shadow-md md:block hidden">
+          <div className="absolute inset-0 -z-10 w-full h-full">
+            <Image
+              src="/images/IIM_Possible_Web_Banner.jpg"
+              alt="IIM Possible Banner"
+              layout="fill"
+              objectFit="cover"
+              priority
+            />
+          </div>
+          <div className="flex gap-6 px-6 items-start justify-start w-full h-full">
+            <div className="w-1/3 flex flex-col justify-start p-8 mt-80 pt-12">
+              <ContactForm />
+            </div>
+          </div>
+        </div>
 
+        <div className="md:hidden flex flex-col gap-4 items-center px-4">
+          <div className="w-full">
+            <Image
+              src="/images/IIM_Possible_Mobile_Banner.jpg"
+              alt="IIM Possible Banner"
+              width={500}
+              height={300}
+              className="w-full h-auto object-cover rounded-xl shadow-md"
+              priority
+            />
+          </div>
+          <div className="w-full">
+            <ContactForm />
+          </div>
+        </div>
+      </section>
 
-
-
-
-
-
-  {/* Mobile Banner + Contact Form Stacked */}
-  <div className="md:hidden flex flex-col gap-4 items-center px-4">
-    <div className="w-full">
-      <Image
-        src="/images/IIM_Possible_Mobile_Banner.jpg"
-        alt="IIM Possible Banner"
-        width={500}
-        height={300}
-        className="w-full h-auto object-cover rounded-xl shadow-md"
-        priority
-      />
-    </div>
-    <div className="w-full">
-      <ContactForm />
-    </div>
-  </div>
-</section>
-<div className="px-4 py-16 md: space-y-14">
-<h1 className="text-center text-3xl font-bold uppercase bg-[#dc2626] text-white py-2 px-4 rounded-md">
-  Admission Open - 1st Batch Starts 15th April Onwards
-</h1>
-
+      {/* Main Content */}
+      <div className="px-4 py-16 md:space-y-14">
+        <h1 className="text-center text-3xl font-bold uppercase bg-[#dc2626] text-white py-2 px-4 rounded-md">
+          Admission Open - 1st Batch Starts 15th April Onwards
+        </h1>
 
         {/* About Section */}
         <section className="text-center max-w-3xl mx-auto">
@@ -164,92 +183,80 @@ const WhyIIMPossiblePage = () => {
           </p>
         </section>
 
-        {/* Why Us Section */}
-        {/* Why Us Section */}
-<section className="text-center">
-  <h2 className="section-title">Benefits</h2>
-  
-  {/* Desktop View - Grid Layout */}
-  <div className="hidden md:grid grid-cols-1 md:grid-cols-4 gap-6">
-    {features.map((feature, idx) => (
-      <motion.div key={idx} whileHover={{ scale: 1.05 }} className="feature-card">
-        <Image src={feature.image} alt={feature.title} width={300} height={200} className="mx-auto rounded-lg" />
-        <h3 className="feature-title">{feature.title}</h3>
-        <ul className="feature-description">
-          {feature.description.map((item, i) => (
-            <li key={i}>{item}</li>
-          ))}
-        </ul>
-      </motion.div>
-    ))}
-  </div>
-
-  {/* Mobile View - Slider */}
-  <div className="md:hidden mt-4">
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={currentFeatureIndex}
-        initial={{ opacity: 0, x: 100 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: -100 }}
-        transition={{ duration: 0.4 }}
-        className="feature-card"
-      >
-        <Image
-          src={features[currentFeatureIndex].image}
-          alt="feature"
-          width={400}
-          height={300}
-          className="mx-auto rounded"
-        />
-        <h3 className="feature-title">{features[currentFeatureIndex].title}</h3>
-        <ul className="feature-description">
-          {features[currentFeatureIndex].description.map((point, i) => (
-            <li key={i}>{point}</li>
-          ))}
-        </ul>
-      </motion.div>
-    </AnimatePresence>
-  </div>
-</section>
-
+        {/* Benefits Section */}
+        <section className="text-center">
+          <h2 className="section-title">Benefits</h2>
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-4 gap-6">
+            {features.map((feature, idx) => (
+              <motion.div key={idx} whileHover={{ scale: 1.05 }} className="feature-card">
+                <Image src={feature.image} alt={feature.title} width={300} height={200} className="mx-auto rounded-lg" />
+                <h3 className="feature-title">{feature.title}</h3>
+                <ul className="feature-description">
+                  {feature.description.map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            ))}
+          </div>
+          <div className="md:hidden mt-4">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={currentFeatureIndex}
+                initial={{ opacity: 0, x: 100 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -100 }}
+                transition={{ duration: 0.4 }}
+                className="feature-card"
+              >
+                <Image
+                  src={features[currentFeatureIndex].image}
+                  alt="feature"
+                  width={400}
+                  height={300}
+                  className="mx-auto rounded"
+                />
+                <h3 className="feature-title">{features[currentFeatureIndex].title}</h3>
+                <ul className="feature-description">
+                  {features[currentFeatureIndex].description.map((point, i) => (
+                    <li key={i}>{point}</li>
+                  ))}
+                </ul>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+        </section>
 
         {/* Success Stories */}
         <section className="text-center">
           <h2 className="section-title">Success Stories</h2>
           <div className="flex flex-col md:flex-row justify-center gap-8">
-            <div className=" p-6 rounded-lg shadow-md">
+            <div className="p-6 rounded-lg shadow-md">
               <h3 className="success-highlight">75%</h3>
               <p className="mt-2">of students scored 99+ percentile</p>
             </div>
-            <div className=" p-6 rounded-lg shadow-md">
+            <div className="p-6 rounded-lg shadow-md">
               <h3 className="success-highlight">45%</h3>
               <p className="mt-2">are now in top 5 B-schools of India</p>
             </div>
           </div>
         </section>
 
-        {/* Process Section */}
+        {/* Offerings Section */}
         <section className="text-center">
-  <h2 className="section-title">Our Offerings</h2>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 text-center">
-    {steps.map((step, index) => (
-      <div
-        key={index}
-        className="flex flex-col items-center justify-center px-4 text-gray-600"
-      >
-        <h3 className="text-lg font-semibold mb-1">Step</h3>
-        <div
-          className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 bg-red-300 text-red-900"
-        >
-          {index + 1}
-        </div>
-        <p className="text-sm text-gray-600">{step}</p>
-      </div>
-    ))}
-  </div>
-</section>
-
+          <h2 className="section-title">Our Offerings</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-6 text-center">
+            {steps.map((step, index) => (
+              <div key={index} className="flex flex-col items-center justify-center px-4 text-gray-600">
+                <h3 className="text-lg font-semibold mb-1">Step</h3>
+                <div className="w-12 h-12 rounded-full flex items-center justify-center text-lg font-bold mb-2 bg-red-300 text-red-900">
+                  {index + 1}
+                </div>
+                <p className="text-sm text-gray-600">{step}</p>
+              </div>
+            ))}
+          </div>
+        </section>
 
         {/* Team Section */}
         <section className="text-center">
@@ -274,6 +281,8 @@ const WhyIIMPossiblePage = () => {
           </a>
         </section>
       </div>
+
+      {/* Footer */}
       <Footer />
     </>
   );

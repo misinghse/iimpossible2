@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import GoogleTag from "@/components/ui/GoogleTag"; // Import the GoogleTag component
+import GoogleTag from "@/components/ui/GoogleTag"; // ✅ GTM Script Injection
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,8 +26,6 @@ export const metadata: Metadata = {
   description: "Personalized Coaching for CAT and Top IIMs",
 };
 
-
-
 export default function RootLayout({
   children,
 }: {
@@ -38,9 +36,17 @@ export default function RootLayout({
       <head>
         <GoogleTag />
       </head>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
+      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
+        {/* ✅ GTM noscript fallback */}
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-N2MDVDL3"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          ></iframe>
+        </noscript>
+
         {children}
       </body>
     </html>

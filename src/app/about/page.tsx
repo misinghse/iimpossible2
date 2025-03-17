@@ -86,7 +86,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Abhinav Jain</h3>
-                <p className="text-gray-500 mb-4">Co-founder</p>
+                <p className="text-gray-500 mb-4">Strategic Partner</p>
                 <p className="text-gray-700 leading-relaxed">
                   Abhinav is the SVP of Finance at CoinDCX and has previously served as CFO at
                   PharmEasy. With experience at Capsugel Healthcare, Aditya Birla Group, and Binani
@@ -109,7 +109,7 @@ export default function AboutPage() {
                   />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">Shashank K Srivastava</h3>
-                <p className="text-gray-500 mb-4">Co-founder</p>
+                <p className="text-gray-500 mb-4">Strategic Partner</p>
                 <p className="text-gray-700 leading-relaxed">
                   Shashank is an experienced trainer and mentor with vast experience in the
                   industry. Notably, he served as Program Director with Wipro Technologies, handling
