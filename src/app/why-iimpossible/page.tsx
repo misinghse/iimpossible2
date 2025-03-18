@@ -29,8 +29,8 @@ const teamMembers = [
     title: "Strategic Partner",
     image: "/images/abhinav.jpg",
     description:
-      "Abhinav, SVP at CoinDCX, and ex-CFO of PharmEasy, holds an MBA and CA. He mentors students using his vast corporate experience to sharpen decision-making skills in real-world contexts.",
-  },
+    "Abhinav, SVP at CoinDCX, and ex-CFO of PharmEasy, holds an CA and CS. He mentors students using his vast corporate experience to sharpen decision-making skills in real-world contexts.",
+},
 ];
 
 const features = [
