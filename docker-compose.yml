@@ -2,6 +2,7 @@ version: "3.8"
 
 services:
   web:
+    image: iimpossible-web-app:latest  
     build:
       context: .
       dockerfile: Dockerfile
@@ -9,7 +10,6 @@ services:
       - "3000:3000"
     volumes:
       - .:/app
-      # - /app/node_modules
     command: ["sh", "-c", "npm install && npx next dev"]
     env_file:
       - .env

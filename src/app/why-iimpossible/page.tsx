@@ -135,7 +135,7 @@ const WhyIIMPossiblePage = () => {
         <div className="relative w-full h-[870px] overflow-hidden shadow-md md:block hidden">
           <div className="absolute inset-0 -z-10 w-full h-full">
             <Image
-              src="/images/IIM_Possible_Web_Banner.jpg"
+              src="/images/IIM_Possible_Ww_Banner.jpg"
               alt="IIM Possible Banner"
               layout="fill"
               objectFit="cover"
