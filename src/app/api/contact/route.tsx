@@ -4,7 +4,16 @@ import nodemailer from "nodemailer";
 export async function POST(req: NextRequest) {
   try {
     // Parse the request body
-    const { name, mobile, email, qualification, attemptedCAT, preferredDate, preferredTime } = await req.json();
+    const {
+      name,
+      mobile,
+      email,
+      qualification,
+      attemptedCAT,
+      preferredDate,
+      preferredTime,
+      preference
+    } = await req.json();
 
     // ✅ Validate required fields
     if (!name || !mobile || !email) {
@@ -41,7 +50,7 @@ export async function POST(req: NextRequest) {
     const transporter = nodemailer.createTransport({
       host: EMAIL_HOST,
       port: Number(EMAIL_PORT),
-      secure: Number(EMAIL_PORT) === 465, // Use SSL for port 465
+      secure: Number(EMAIL_PORT) === 465,
       auth: {
         user: EMAIL_USER,
         pass: EMAIL_PASS,
@@ -50,15 +59,16 @@ export async function POST(req: NextRequest) {
 
     // ✅ Construct Email Content Including All Fields
     const emailContent = `
-      📋 New Contact Form Submission
+📋 New Contact Form Submission
 
-      👤 Name: ${name}
-      📱 Mobile: ${mobile}
-      📧 Email: ${email}
-      🎓 Highest Qualification: ${qualification || "Not provided"}
-      ❓ Attempted CAT?: ${attemptedCAT || "Not specified"}
-      📅 Preferred Date: ${preferredDate || "Not provided"}
-      ⏰ Preferred Time: ${preferredTime || "Not provided"}
+👤 Name: ${name}
+📱 Mobile: ${mobile}
+📧 Email: ${email}
+🎓 Highest Qualification: ${qualification || "Not provided"}
+❓ Attempted CAT?: ${attemptedCAT || "Not specified"}
+📅 Preferred Date: ${preferredDate || "Not provided"}
+⏰ Preferred Time: ${preferredTime || "Not provided"}
+🎯 Selected Preference: ${preference || "Not selected"}
     `;
 
     // ✅ Send the email
@@ -69,7 +79,6 @@ export async function POST(req: NextRequest) {
       text: emailContent,
     });
 
-    // ✅ Success Response
     return NextResponse.json(
       { message: "Your query has been submitted successfully!" },
       { status: 200 }
