@@ -3,14 +3,15 @@
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-// ✅ Extend window object safely
-declare global {
-  interface Window {
-    dataLayer: Record<string, any>[];
-    lintrk: (event: string, payload: Record<string, any>) => void;
-  }
-}
-
+/**
+ * ContactForm Component
+ *
+ * Provides a contact form with fields for name, mobile, email, qualification,
+ * attempted CAT, and preferences. On submission, it posts data to the /api/contact
+ * endpoint and triggers analytics events for GTM and LinkedIn.
+ *
+ * @returns JSX.Element representing the contact form.
+ */
 export const ContactForm = () => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -24,7 +25,12 @@ export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [showDownloadLink, setShowDownloadLink] = useState(false);
 
-  // ✅ Submit Handler
+  /**
+   * Handles the submission of the contact form.
+   * Validates the mobile number, sends the data to the backend, and triggers analytics events.
+   *
+   * @param e - The form submission event.
+   */
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
@@ -59,7 +65,7 @@ export const ContactForm = () => {
         setShowDownloadLink(true);
         resetForm();
 
-        // ✅ Push GTM custom event
+        // Push GTM custom event.
         if (typeof window !== "undefined" && window.dataLayer) {
           window.dataLayer.push({
             event: "contact_form_submit",
@@ -71,7 +77,7 @@ export const ContactForm = () => {
           });
         }
 
-        // ✅ LinkedIn Insight Tag Event
+        // LinkedIn Insight Tag Event.
         if (typeof window !== "undefined" && typeof window.lintrk === "function") {
           window.lintrk("track", { conversion_id: 19257724 });
         }
@@ -88,6 +94,9 @@ export const ContactForm = () => {
     }
   }
 
+  /**
+   * Resets the form fields to their initial values.
+   */
   function resetForm() {
     setName("");
     setMobile("");
@@ -170,9 +179,7 @@ export const ContactForm = () => {
                 name="preference"
                 value="15 min mentorship session"
                 checked={preference === "15 min mentorship session"}
-                onChange={() =>
-                  setPreference("15 min mentorship session")
-                }
+                onChange={() => setPreference("15 min mentorship session")}
               />
               <span className="text-sm">Free 15 min Mentorship Session</span>
             </label>
@@ -182,9 +189,7 @@ export const ContactForm = () => {
                 name="preference"
                 value="Personalized study plan"
                 checked={preference === "Personalized study plan"}
-                onChange={() =>
-                  setPreference("Personalized study plan")
-                }
+                onChange={() => setPreference("Personalized study plan")}
               />
               <span className="text-sm">Free Personalized Study Plan</span>
             </label>
@@ -202,10 +207,7 @@ export const ContactForm = () => {
         </p>
       )}
       {showDownloadLink && (
-        <a
-          href="/syllabus/iimpsyllabus.pdf"
-          className="text-blue-600 underline"
-        >
+        <a href="/syllabus/iimpsyllabus.pdf" className="text-blue-600 underline">
           Download Syllabus
         </a>
       )}

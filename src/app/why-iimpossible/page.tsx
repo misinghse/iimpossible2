@@ -7,7 +7,6 @@ import { Navbar } from "@/components/ui/navbar";
 import { Footer } from "@/components/ui/footer";
 import { ContactForm } from "@/components/ui/ContactForm";
 
-const GTM_ID = "GTM-N2MDVDL3";
 
 const teamMembers = [
   {
