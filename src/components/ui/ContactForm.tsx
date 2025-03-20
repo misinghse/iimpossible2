@@ -3,11 +3,10 @@
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 
-// ✅ TypeScript global declaration for gtag and lintrk
+// ✅ Extend window object safely
 declare global {
   interface Window {
     dataLayer: Record<string, any>[];
-    gtag: (...args: any[]) => void;
     lintrk: (event: string, payload: Record<string, any>) => void;
   }
 }
@@ -31,7 +30,6 @@ export const ContactForm = () => {
     setLoading(true);
     setServerMessage("");
 
-    // ✅ Simple mobile validation
     if (!/^\d{10}$/.test(mobile)) {
       setServerMessage("Please enter a valid 10-digit mobile number.");
       setLoading(false);
@@ -61,7 +59,7 @@ export const ContactForm = () => {
         setShowDownloadLink(true);
         resetForm();
 
-        // ✅ GTM Event Push
+        // ✅ Push GTM custom event
         if (typeof window !== "undefined" && window.dataLayer) {
           window.dataLayer.push({
             event: "contact_form_submit",
@@ -73,18 +71,9 @@ export const ContactForm = () => {
           });
         }
 
-        // ✅ LinkedIn Insight Tag Conversion Tracking
+        // ✅ LinkedIn Insight Tag Event
         if (typeof window !== "undefined" && typeof window.lintrk === "function") {
           window.lintrk("track", { conversion_id: 19257724 });
-        }
-
-        // ✅ Google Ads Direct Conversion Tracking (fallback to gtag)
-        if (typeof window !== "undefined" && typeof window.gtag === "function") {
-          window.gtag("event", "conversion", {
-            send_to: "AW-16920894393/BnPVC0Mehqa0aELm3wYQ_",
-            value: 1,
-            currency: "INR",
-          });
         }
 
       } else {
@@ -114,19 +103,60 @@ export const ContactForm = () => {
     <div className="p-4 border rounded-md shadow-lg bg-white space-y-4">
       <h3 className="text-xl font-semibold">Contact Us</h3>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} required />
-        <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} required />
-        <input className="w-full border px-3 py-2 rounded" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
-        <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Qualification" value={qualification} onChange={(e) => setQualification(e.target.value)} />
+        <input
+          className="w-full border px-3 py-2 rounded"
+          type="text"
+          placeholder="Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
+        <input
+          className="w-full border px-3 py-2 rounded"
+          type="text"
+          placeholder="Mobile"
+          value={mobile}
+          onChange={(e) => setMobile(e.target.value)}
+          required
+        />
+        <input
+          className="w-full border px-3 py-2 rounded"
+          type="email"
+          placeholder="Email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+        />
+        <input
+          className="w-full border px-3 py-2 rounded"
+          type="text"
+          placeholder="Qualification"
+          value={qualification}
+          onChange={(e) => setQualification(e.target.value)}
+        />
 
         {/* Attempted CAT */}
         <div className="flex items-center space-x-4">
           <span>Attempted CAT?</span>
           <label>
-            <input type="radio" name="cat" value="Yes" checked={attemptedCAT === "Yes"} onChange={() => setAttemptedCAT("Yes")} /> Yes
+            <input
+              type="radio"
+              name="cat"
+              value="Yes"
+              checked={attemptedCAT === "Yes"}
+              onChange={() => setAttemptedCAT("Yes")}
+            />{" "}
+            Yes
           </label>
           <label>
-            <input type="radio" name="cat" value="No" checked={attemptedCAT === "No"} onChange={() => setAttemptedCAT("No")} /> No
+            <input
+              type="radio"
+              name="cat"
+              value="No"
+              checked={attemptedCAT === "No"}
+              onChange={() => setAttemptedCAT("No")}
+            />{" "}
+            No
           </label>
         </div>
 
@@ -135,11 +165,27 @@ export const ContactForm = () => {
           <span>Preferences:</span>
           <div className="flex flex-col space-y-2">
             <label className="flex items-center space-x-2">
-              <input type="radio" name="preference" value="15 min mentorship session" checked={preference === "15 min mentorship session"} onChange={() => setPreference("15 min mentorship session")} />
+              <input
+                type="radio"
+                name="preference"
+                value="15 min mentorship session"
+                checked={preference === "15 min mentorship session"}
+                onChange={() =>
+                  setPreference("15 min mentorship session")
+                }
+              />
               <span className="text-sm">Free 15 min Mentorship Session</span>
             </label>
             <label className="flex items-center space-x-2">
-              <input type="radio" name="preference" value="Personalized study plan" checked={preference === "Personalized study plan"} onChange={() => setPreference("Personalized study plan")} />
+              <input
+                type="radio"
+                name="preference"
+                value="Personalized study plan"
+                checked={preference === "Personalized study plan"}
+                onChange={() =>
+                  setPreference("Personalized study plan")
+                }
+              />
               <span className="text-sm">Free Personalized Study Plan</span>
             </label>
           </div>
@@ -151,10 +197,15 @@ export const ContactForm = () => {
       </form>
 
       {serverMessage && (
-        <p className="text-sm font-semibold text-red-600">{serverMessage}</p>
+        <p className="text-sm font-semibold text-red-600">
+          {serverMessage}
+        </p>
       )}
       {showDownloadLink && (
-        <a href="/syllabus/iimpsyllabus.pdf" className="text-blue-600 underline">
+        <a
+          href="/syllabus/iimpsyllabus.pdf"
+          className="text-blue-600 underline"
+        >
           Download Syllabus
         </a>
       )}
