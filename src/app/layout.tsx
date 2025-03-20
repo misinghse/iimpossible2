@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import GoogleTag from "@/components/ui/GoogleTag"; 
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,12 +14,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   icons: {
-    icon: [
-      {
-        url: "/images/logo.jpeg",
-        href: "/images/logo.jpeg",
-      },
-    ],
+    icon: [{ url: "/images/logo.jpeg", href: "/images/logo.jpeg" }],
   },
   title: "IIM Possible",
   description: "Personalized Coaching for CAT and Top IIMs",
@@ -34,10 +28,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* ✅ Google Tag Manager Script */}
-        <GoogleTag />
+        {/* ✅ Google Ads GTAG Script */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16920894393"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'AW-16920894393');
+            `,
+          }}
+        />
 
-        {/* ✅ Meta Pixel Script (placed at bottom of head) */}
+        {/* ✅ Meta Pixel Script */}
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -76,7 +80,7 @@ export default function RootLayout({
           ></iframe>
         </noscript>
 
-        {/* ✅ Page content */}
+        {/* ✅ Page Content */}
         {children}
 
         {/* ✅ LinkedIn Insight Tag */}
@@ -99,7 +103,7 @@ export default function RootLayout({
                 window.lintrk.q=[]}
                 var s = document.getElementsByTagName("script")[0];
                 var b = document.createElement("script");
-                b.type = "text/javascript";b.async = true;
+                b.type = "text/javascript"; b.async = true;
                 b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
                 s.parentNode.insertBefore(b, s);
               })(window.lintrk);
