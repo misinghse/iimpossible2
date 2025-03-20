@@ -66,6 +66,7 @@ export const ContactForm = () => {
         resetForm();
 
         // Push GTM custom event.
+        // Ensure this push is the only one for the "contact_form_submit" event.
         if (typeof window !== "undefined" && window.dataLayer) {
           window.dataLayer.push({
             event: "contact_form_submit",
@@ -78,10 +79,12 @@ export const ContactForm = () => {
         }
 
         // LinkedIn Insight Tag Event.
-        if (typeof window !== "undefined" && typeof window.lintrk === "function") {
+        if (
+          typeof window !== "undefined" &&
+          typeof window.lintrk === "function"
+        ) {
           window.lintrk("track", { conversion_id: 19257724 });
         }
-
       } else {
         setServerMessage(data.error || "Failed to submit. Please try again.");
         setShowDownloadLink(false);
@@ -202,9 +205,7 @@ export const ContactForm = () => {
       </form>
 
       {serverMessage && (
-        <p className="text-sm font-semibold text-red-600">
-          {serverMessage}
-        </p>
+        <p className="text-sm font-semibold text-red-600">{serverMessage}</p>
       )}
       {showDownloadLink && (
         <a href="/syllabus/iimpsyllabus.pdf" className="text-blue-600 underline">

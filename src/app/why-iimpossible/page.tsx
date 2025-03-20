@@ -99,7 +99,6 @@ const WhyIIMPossiblePage = () => {
 
   return (
     <>
-      {/* Google Tag Manager Script in Head */}
       <Head>
         <title>Why IIM Possible</title>
         <meta name="description" content="Why IIM Possible - Personalized CAT Coaching Program by IIM Alumni" />
