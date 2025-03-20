@@ -16,11 +16,13 @@ export const ContactForm = () => {
   const [loading, setLoading] = useState(false);
   const [showDownloadLink, setShowDownloadLink] = useState(false);
 
+  // ✅ Submit Handler
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setLoading(true);
     setServerMessage("");
 
+    // ✅ Simple mobile validation
     if (!/^\d{10}$/.test(mobile)) {
       setServerMessage("Please enter a valid 10-digit mobile number.");
       setLoading(false);
@@ -61,6 +63,13 @@ export const ContactForm = () => {
             preference: preference,
           });
         }
+
+        // ✅ LinkedIn Insight Tag Conversion Tracking
+        // NOTE: Make sure LinkedIn Insight Tag is installed globally via GTM or <head>
+        if (typeof window !== "undefined" && typeof window.lintrk === "function") {
+          window.lintrk('track', { conversion_id: 19257724 });
+        }
+
       } else {
         setServerMessage(data.error || "Failed to submit. Please try again.");
         setShowDownloadLink(false);
@@ -73,6 +82,7 @@ export const ContactForm = () => {
     }
   }
 
+  // ✅ Reset form fields
   function resetForm() {
     setName("");
     setMobile("");
@@ -93,6 +103,7 @@ export const ContactForm = () => {
         <input className="w-full border px-3 py-2 rounded" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Qualification" value={qualification} onChange={(e) => setQualification(e.target.value)} />
 
+        {/* Attempted CAT Radio */}
         <div className="flex items-center space-x-4">
           <span>Attempted CAT?</span>
           <label>
@@ -103,6 +114,7 @@ export const ContactForm = () => {
           </label>
         </div>
 
+        {/* Preferences */}
         <div className="space-y-2 text-left">
           <span>Preferences:</span>
           <div className="flex flex-col space-y-2">
@@ -117,11 +129,19 @@ export const ContactForm = () => {
           </div>
         </div>
 
-        <Button type="submit" disabled={loading}>{loading ? "Submitting..." : "Submit"}</Button>
+        <Button type="submit" disabled={loading}>
+          {loading ? "Submitting..." : "Submit"}
+        </Button>
       </form>
 
-      {serverMessage && <p className="text-sm font-semibold text-red-600">{serverMessage}</p>}
-      {showDownloadLink && <a href="/syllabus/iimpsyllabus.pdf" className="text-blue-600 underline">Download Syllabus</a>}
+      {serverMessage && (
+        <p className="text-sm font-semibold text-red-600">{serverMessage}</p>
+      )}
+      {showDownloadLink && (
+        <a href="/syllabus/iimpsyllabus.pdf" className="text-blue-600 underline">
+          Download Syllabus
+        </a>
+      )}
     </div>
   );
 };
