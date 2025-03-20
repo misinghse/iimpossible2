@@ -43,13 +43,25 @@ export const ContactForm = () => {
         }),
       });
 
+      const data = await response.json();
+
       if (response.ok) {
-        const data = await response.json();
         setServerMessage(data.message || "Submission successful!");
         setShowDownloadLink(true);
         resetForm();
+
+        // ✅ GTM Event Push
+        if (typeof window !== "undefined" && window.dataLayer) {
+          window.dataLayer.push({
+            event: "contact_form_submit",
+            formLocation: "Why IIM Possible Page",
+            userName: name,
+            userMobile: mobile,
+            userEmail: email,
+            preference: preference,
+          });
+        }
       } else {
-        const data = await response.json();
         setServerMessage(data.error || "Failed to submit. Please try again.");
         setShowDownloadLink(false);
       }
@@ -80,31 +92,34 @@ export const ContactForm = () => {
         <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Mobile" value={mobile} onChange={(e) => setMobile(e.target.value)} required />
         <input className="w-full border px-3 py-2 rounded" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Qualification" value={qualification} onChange={(e) => setQualification(e.target.value)} />
-        
+
         <div className="flex items-center space-x-4">
-          <span >Attempted CAT?</span>
-          <label><input type="radio" name="cat" value="Yes" checked={attemptedCAT === "Yes"} onChange={() => setAttemptedCAT("Yes")} /> Yes</label>
-          <label><input type="radio" name="cat" value="No" checked={attemptedCAT === "No"} onChange={() => setAttemptedCAT("No")} /> No</label>
+          <span>Attempted CAT?</span>
+          <label>
+            <input type="radio" name="cat" value="Yes" checked={attemptedCAT === "Yes"} onChange={() => setAttemptedCAT("Yes")} /> Yes
+          </label>
+          <label>
+            <input type="radio" name="cat" value="No" checked={attemptedCAT === "No"} onChange={() => setAttemptedCAT("No")} /> No
+          </label>
         </div>
 
         <div className="space-y-2 text-left">
-  <span >Preferences:</span>
-  <div className="flex flex-col space-y-2">
-    <label className="flex items-center space-x-2">
-      <input type="radio" name="preference" value="15 min mentorship session" checked={preference === "15 min mentorship session"} onChange={() => setPreference("15 min mentorship session")} />
-      <span className="text-sm ">Free 15 min Mentorship Session</span>
-    </label>
-    <label className="flex items-center space-x-2">
-      <input type="radio" name="preference" value="Personalized study plan" checked={preference === "Personalized study plan"} onChange={() => setPreference("Personalized study plan")} />
-      <span className="text-sm ">Free Personalized Study Plan</span>
-    </label>
-  </div>
-</div>
-
-
+          <span>Preferences:</span>
+          <div className="flex flex-col space-y-2">
+            <label className="flex items-center space-x-2">
+              <input type="radio" name="preference" value="15 min mentorship session" checked={preference === "15 min mentorship session"} onChange={() => setPreference("15 min mentorship session")} />
+              <span className="text-sm">Free 15 min Mentorship Session</span>
+            </label>
+            <label className="flex items-center space-x-2">
+              <input type="radio" name="preference" value="Personalized study plan" checked={preference === "Personalized study plan"} onChange={() => setPreference("Personalized study plan")} />
+              <span className="text-sm">Free Personalized Study Plan</span>
+            </label>
+          </div>
+        </div>
 
         <Button type="submit" disabled={loading}>{loading ? "Submitting..." : "Submit"}</Button>
       </form>
+
       {serverMessage && <p className="text-sm font-semibold text-red-600">{serverMessage}</p>}
       {showDownloadLink && <a href="/syllabus/iimpsyllabus.pdf" className="text-blue-600 underline">Download Syllabus</a>}
     </div>
