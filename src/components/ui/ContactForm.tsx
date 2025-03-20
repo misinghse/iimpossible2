@@ -3,6 +3,15 @@
 import { FormEvent, useState } from "react";
 import { Button } from "@/components/ui/button";
 
+// ✅ TypeScript global declaration for gtag and lintrk
+declare global {
+  interface Window {
+    dataLayer: Record<string, any>[];
+    gtag: (...args: any[]) => void;
+    lintrk: (event: string, payload: Record<string, any>) => void;
+  }
+}
+
 export const ContactForm = () => {
   const [name, setName] = useState("");
   const [mobile, setMobile] = useState("");
@@ -65,9 +74,17 @@ export const ContactForm = () => {
         }
 
         // ✅ LinkedIn Insight Tag Conversion Tracking
-        // NOTE: Make sure LinkedIn Insight Tag is installed globally via GTM or <head>
         if (typeof window !== "undefined" && typeof window.lintrk === "function") {
-          window.lintrk('track', { conversion_id: 19257724 });
+          window.lintrk("track", { conversion_id: 19257724 });
+        }
+
+        // ✅ Google Ads Direct Conversion Tracking (fallback to gtag)
+        if (typeof window !== "undefined" && typeof window.gtag === "function") {
+          window.gtag("event", "conversion", {
+            send_to: "AW-16920894393/BnPVC0Mehqa0aELm3wYQ_",
+            value: 1,
+            currency: "INR",
+          });
         }
 
       } else {
@@ -82,7 +99,6 @@ export const ContactForm = () => {
     }
   }
 
-  // ✅ Reset form fields
   function resetForm() {
     setName("");
     setMobile("");
@@ -103,7 +119,7 @@ export const ContactForm = () => {
         <input className="w-full border px-3 py-2 rounded" type="email" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} required />
         <input className="w-full border px-3 py-2 rounded" type="text" placeholder="Qualification" value={qualification} onChange={(e) => setQualification(e.target.value)} />
 
-        {/* Attempted CAT Radio */}
+        {/* Attempted CAT */}
         <div className="flex items-center space-x-4">
           <span>Attempted CAT?</span>
           <label>
