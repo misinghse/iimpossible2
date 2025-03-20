@@ -20,15 +20,11 @@ export const metadata: Metadata = {
   description: "Personalized Coaching for CAT and Top IIMs",
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
-        {/* ✅ Google Ads GTAG Script */}
+        {/* ✅ Google Ads GTAG script (one-time config) */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16920894393"></script>
         <script
           dangerouslySetInnerHTML={{
@@ -68,7 +64,6 @@ export default function RootLayout({
           />
         </noscript>
       </head>
-
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {/* ✅ GTM noscript fallback */}
         <noscript>
@@ -80,7 +75,6 @@ export default function RootLayout({
           ></iframe>
         </noscript>
 
-        {/* ✅ Page Content */}
         {children}
 
         {/* ✅ LinkedIn Insight Tag */}
